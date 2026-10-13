@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>KORATECH Developers — PG 결제 개발자센터 | KORATECH IT SOLUTIONS</title>
+  <meta name="description" content="KORATECH 결제 연동 가이드, API 레퍼런스, 언어별 예제 코드, 테스트 키, 웹훅, 수수료 계산기 등 결제 개발에 필요한 모든 도구를 제공합니다.">
+  <link rel="canonical" href="https://koratechit.com/ko/pg/">
+  <link rel="alternate" hreflang="ko" href="https://koratechit.com/ko/pg/">
+  <link rel="alternate" hreflang="en" href="https://koratechit.com/en/pg/">
+  <meta property="og:image" content="https://koratechit.com/assets/img/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="icon" href="../../assets/img/favicon.ico" sizes="any">
+  <link rel="icon" href="../../assets/img/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="../../assets/img/apple-touch-icon.png">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap">
+  <link rel="stylesheet" href="../../assets/css/common.css">
+  <link rel="stylesheet" href="../../assets/css/pg.css">
+  <script src="../../assets/js/common.js" defer></script>
+  <script src="../../assets/js/pg.js" defer></script>
+</head>
+<body class="pg-body">
+<a class="skip-link" href="#main">본문 바로가기</a>
+
+<header class="site-header is-light">
+  <div class="container header-inner">
+    <a class="logo" href="index.html" aria-label="KORATECH Developers 홈"><img class="logo-img logo-color" src="../../assets/img/logo-horizontal.png" alt="" width="148" height="40"><img class="logo-img logo-white" src="../../assets/img/logo-horizontal-white.png" alt="" width="148" height="40"><span class="dev-tag">Developers</span></a>
+    <nav class="gnb" aria-label="개발자센터 메뉴">
+      <a href="#docs">가이드</a>
+      <div class="has-sub">
+        <button type="button" aria-haspopup="true">API &amp; SDK</button>
+        <div class="sub-menu">
+          <a href="#doc-confirm">API 레퍼런스</a>
+          <a href="#doc-request">SDK 레퍼런스</a>
+          <a href="#doc-status">결제 상태 · ENUM 코드</a>
+          <a href="#doc-errors">에러 코드</a>
+        </div>
+      </div>
+      <a href="#tools">개발자 도구</a>
+      <a href="#doc-fee">수수료 계산기</a>
+      <a href="#community">지원</a>
+      <a href="../index.html">KORATECH 홈</a>
+    </nav>
+    <div class="header-util">
+      <button class="kbd-search" type="button" data-focus-search>문서 검색 <kbd>⌘K</kbd></button>
+      <div class="lang-switch" aria-label="언어 선택"><a class="is-active" href="index.html" aria-current="true"><span>KO</span></a><a href="../../en/pg/index.html" hreflang="en"><span>EN</span></a></div>
+      <a class="btn btn-sm btn-dark" href="../index.html#contact">가맹점 문의</a>
+      <button class="menu-toggle" type="button" aria-label="메뉴 열기" aria-expanded="false"><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- HERO -->
+  <section class="pg-hero">
+    <div class="container">
+      <span class="chip"><i></i>Sandbox 환경 상시 운영 중</span>
+      <h1>결제 연동,<br><span class="blue">코드 몇 줄</span>이면 충분합니다</h1>
+      <p class="lead">처음이어도 괜찮아요. 복사해서 붙여넣기만 하면 되는 예제 코드와 테스트 키로, 오늘 바로 결제를 붙여보세요.</p>
+      <div class="actions">
+        <a class="btn btn-pg" href="#docs">연동 시작하기 <span class="arrow">→</span></a>
+        <a class="btn btn-gray" href="#doc-keys">테스트 키 받기</a>
+      </div>
+
+      <div class="hero-window reveal">
+        <div class="hw-code">
+          <div class="hw-bar"><i></i><i></i><i></i><span>checkout.js</span></div>
+<pre><code data-lang="js">// 1. SDK 초기화
+const kt = KoratechPay('test_ck_KT2026xxxxxxxx');
+
+// 2. 결제 요청
+await kt.requestPayment({
+  method: 'CARD',
+  amount: 39000,
+  orderId: 'ORDER_20261008_001',
+  orderName: '울 블렌드 하프 코트',
+  successUrl: location.origin + '/success',
+  failUrl: location.origin + '/fail'
+});</code></pre>
+        </div>
+        <div class="hw-preview">
+          <div class="pay-widget">
+            <h4>결제 수단</h4>
+            <div class="pay-methods">
+              <button type="button" class="is-active" aria-pressed="true">신용·체크카드</button>
+              <button type="button" aria-pressed="false">간편결제</button>
+              <button type="button" aria-pressed="false">계좌이체</button>
+              <button type="button" aria-pressed="false">가상계좌</button>
+            </div>
+            <div class="pay-sum"><span>총 결제금액</span><b>39,000원</b></div>
+            <button class="btn btn-pg" type="button">39,000원 결제하기</button>
+            <p class="pay-result" aria-live="polite"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="pg-sec">
+    <div class="container">
+      <h2 class="pg-title reveal">개발자의 시간을 아껴드려요</h2>
+      <div class="feat-grid">
+        <div class="feat reveal"><div class="ic" aria-hidden="true">⚡</div><h3>한 줄로 연동되는 결제</h3><p>SDK 하나로 카드, 간편결제, 계좌이체, 가상계좌, 정기결제를 모두 사용할 수 있어요.</p></div>
+        <div class="feat reveal" data-delay="1"><div class="ic" aria-hidden="true">🧩</div><h3>노코드 결제수단 운영</h3><p>관리자 화면에서 결제수단 추가·순서 변경·노출 여부를 코드 수정 없이 바꿀 수 있어요.</p></div>
+        <div class="feat reveal" data-delay="2"><div class="ic" aria-hidden="true">🛡️</div><h3>안전한 서버 승인 구조</h3><p>금액 위변조를 막는 서버 승인 방식과 웹훅 서명 검증으로 결제 사고를 예방해요.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CODE EXAMPLES -->
+  <section class="pg-sec gray">
+    <div class="container">
+      <h2 class="pg-title reveal">언어별 코드 예제를<br>복사, 붙여넣기만 하면 연동 끝!</h2>
+      <p class="pg-sub reveal">결제 승인 API 호출 예제입니다. 시크릿 키는 반드시 서버에서만 사용하세요.</p>
+      <div class="code-box reveal">
+        <div class="code-tabs" role="tablist" aria-label="언어 선택">
+          <button role="tab" id="ct-node" aria-controls="cp-node" type="button">Node.js</button>
+          <button role="tab" id="ct-py" aria-controls="cp-py" type="button">Python</button>
+          <button role="tab" id="ct-java" aria-controls="cp-java" type="button">Java</button>
+          <button role="tab" id="ct-php" aria-controls="cp-php" type="button">PHP</button>
+          <button role="tab" id="ct-curl" aria-controls="cp-curl" type="button">cURL</button>
+        </div>
+        <div class="code-panel" role="tabpanel" id="cp-node" aria-labelledby="ct-node">
+<pre><code data-lang="js">// POST /api/payments/confirm  (Express)
+import express from 'express';
+const app = express();
+app.use(express.json());
+
+const SECRET_KEY = process.env.KT_SECRET_KEY; // test_sk_...
+const auth = 'Basic ' + Buffer.from(SECRET_KEY + ':').toString('base64');
+
+app.post('/api/payments/confirm', async (req, res) =&gt; {
+  const { paymentKey, orderId, amount } = req.body;
+
+  // 주문 금액 검증 — DB의 금액과 반드시 비교하세요
+  const order = await db.orders.find(orderId);
+  if (order.amount !== amount) return res.status(400).json({ code: 'AMOUNT_MISMATCH' });
+
+  const r = await fetch('https://api.koratechit.com/v1/payments/confirm', {
+    method: 'POST',
+    headers: { Authorization: auth, 'Content-Type': 'application/json' },
+    body: JSON.stringify({ paymentKey, orderId, amount })
+  });
+  const data = await r.json();
+  res.status(r.status).json(data);
+});</code></pre>
+        </div>
+        <div class="code-panel" role="tabpanel" id="cp-py" aria-labelledby="ct-py">
+<pre><code data-lang="python"># pip install requests
+import base64, os, requests
+
+SECRET_KEY = os.environ["KT_SECRET_KEY"]  # test_sk_...
+auth = base64.b64encode(f"{SECRET_KEY}:".encode()).decode()
+
+def confirm_payment(payment_key, order_id, amount):
+    r = requests.post(
+        "https://api.koratechit.com/v1/payments/confirm",
+        headers={"Authorization": f"Basic {auth}", "Content-Type": "application/json"},
+        json={"paymentKey": payment_key, "orderId": order_id, "amount": amount},
+        timeout=10,
+    )
+    r.raise_for_status()
+    return r.json()  # status == "DONE"</code></pre>
+        </div>
+        <div class="code-panel" role="tabpanel" id="cp-java" aria-labelledby="ct-java">
+<pre><code data-lang="java">// Java 11+ HttpClient
+String secretKey = System.getenv("KT_SECRET_KEY");
+String auth = "Basic " + Base64.getEncoder().encodeToString((secretKey + ":").getBytes());
+
+String body = String.format(
+  "{\"paymentKey\":\"%s\",\"orderId\":\"%s\",\"amount\":%d}", paymentKey, orderId, amount);
+
+HttpRequest request = HttpRequest.newBuilder()
+  .uri(URI.create("https://api.koratechit.com/v1/payments/confirm"))
+  .header("Authorization", auth)
+  .header("Content-Type", "application/json")
+  .POST(HttpRequest.BodyPublishers.ofString(body))
+  .build();
+
+HttpResponse&lt;String&gt; response = HttpClient.newHttpClient()
+  .send(request, HttpResponse.BodyHandlers.ofString());</code></pre>
+        </div>
+        <div class="code-panel" role="tabpanel" id="cp-php" aria-labelledby="ct-php">
+<pre><code data-lang="php">&lt;?php
+$secretKey = getenv('KT_SECRET_KEY'); // test_sk_...
+$payload = json_encode([
+  'paymentKey' =&gt; $_POST['paymentKey'],
+  'orderId'    =&gt; $_POST['orderId'],
+  'amount'     =&gt; (int) $_POST['amount'],
+]);
+
+$ch = curl_init('https://api.koratechit.com/v1/payments/confirm');
+curl_setopt_array($ch, [
+  CURLOPT_POST           =&gt; true,
+  CURLOPT_RETURNTRANSFER =&gt; true,
+  CURLOPT_USERPWD        =&gt; $secretKey . ':',
+  CURLOPT_HTTPHEADER     =&gt; ['Content-Type: application/json'],
+  CURLOPT_POSTFIELDS     =&gt; $payload,
+]);
+$result = json_decode(curl_exec($ch), true);
+curl_close($ch);</code></pre>
+        </div>
+        <div class="code-panel" role="tabpanel" id="cp-curl" aria-labelledby="ct-curl">
+<pre><code data-lang="bash">curl --request POST \
+  --url https://api.koratechit.com/v1/payments/confirm \
+  --user test_sk_KT2026xxxxxxxx: \
+  --header 'Content-Type: application/json' \
+  --data '{
+    "paymentKey": "kt_pay_5EnNZRJGvaBX7zk2yd8ydw26XvwXkLrx9POLqKQjmAw4b0e1",
+    "orderId": "ORDER_20261008_001",
+    "amount": 39000
+  }'</code></pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TOOLS -->
+  <section class="pg-sec" id="tools">
+    <div class="container">
+      <h2 class="pg-title reveal">개발자 도구</h2>
+      <p class="pg-sub reveal">연동부터 운영까지 필요한 도구를 한곳에 모았어요.</p>
+      <div class="tool-grid">
+        <a class="tool reveal" href="#doc-confirm"><div class="ic" aria-hidden="true">📘</div><h3>API &amp; SDK</h3><p>API와 SDK 스펙 문서를 제공해 드려요.</p></a>
+        <a class="tool reveal" data-delay="1" href="#" data-soon><div class="ic" aria-hidden="true">🧪</div><h3>API 테스트</h3><p>환경 설정 없이 브라우저에서 API를 바로 실행해 보세요.</p></a>
+        <a class="tool reveal" data-delay="2" href="#" data-soon><div class="ic" aria-hidden="true">🏖️</div><h3>샌드박스</h3><p>실제 돈이 오가지 않는 환경에서 전체 결제 흐름을 검증해요.</p></a>
+        <a class="tool reveal" data-delay="3" href="#doc-keys"><div class="ic" aria-hidden="true">🔑</div><h3>내 개발 정보</h3><p>API 키, 웹훅 URL, 테스트 결제 내역을 관리해요.</p></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- DOCS -->
+  <section class="pg-sec gray" id="docs">
+    <div class="container">
+      <h2 class="pg-title reveal">빠른 연동 가이드</h2>
+      <p class="pg-sub reveal">결제위젯 기준, 4단계로 결제를 완성해 보세요.</p>
+      <div class="docs">
+        <aside class="docs-nav" aria-label="문서 목차">
+          <label class="sr-only" for="docFilter">문서 검색</label>
+          <input id="docFilter" type="search" placeholder="문서 검색 (⌘K)">
+          <h4>시작하기</h4>
+          <a href="#doc-flow">결제 흐름 이해하기</a>
+          <a href="#doc-keys">API 키 발급</a>
+          <h4>연동하기</h4>
+          <a href="#doc-request">결제 요청 (SDK)</a>
+          <a href="#doc-confirm">결제 승인 (API)</a>
+          <a href="#doc-webhook">웹훅 설정</a>
+          <h4>레퍼런스</h4>
+          <a href="#doc-status">결제 상태 코드</a>
+          <a href="#doc-errors">에러 코드</a>
+          <a href="#doc-fee">수수료 계산기</a>
+        </aside>
+        <div class="docs-content">
+
+          <article class="doc-sec" id="doc-flow">
+            <h3><span class="no">01</span>결제 흐름 이해하기</h3>
+            <p>KORATECH 결제는 <b>요청 → 인증 → 승인</b> 3단계로 이루어집니다. 구매자 인증이 끝나면 <code>successUrl</code>로 이동하고, 가맹점 서버가 승인 API를 호출해야 결제가 최종 완료됩니다.</p>
+            <ol class="flow">
+              <li><b>결제 요청</b>클라이언트에서 SDK로 결제창을 엽니다.</li>
+              <li><b>구매자 인증</b>카드사·간편결제 인증을 진행합니다.</li>
+              <li><b>리다이렉트</b>paymentKey, orderId, amount가 전달됩니다.</li>
+              <li><b>서버 승인</b>승인 API를 호출하면 DONE 상태가 됩니다.</li>
+            </ol>
+            <div class="callout"><b>💡</b><span>인증 후 <b>10분 이내</b>에 승인 API를 호출하지 않으면 결제가 자동으로 만료(<code>EXPIRED</code>)됩니다.</span></div>
+          </article>
+
+          <article class="doc-sec" id="doc-keys">
+            <h3><span class="no">02</span>API 키 발급</h3>
+            <p>가맹점 계약 전에도 테스트 키로 모든 기능을 사용할 수 있습니다. 클라이언트 키는 브라우저에서, 시크릿 키는 서버에서만 사용합니다.</p>
+            <div class="keys">
+              <div class="key-row"><span>클라이언트 키</span><code id="k1">test_ck_KT2026D5GePWvyJnrK0W0k6gzMLv</code><button type="button" data-copy="k1">복사</button></div>
+              <div class="key-row"><span>시크릿 키</span><code id="k2">test_sk_KT2026zXLkKEypNArWmo50nmlJ4b</code><button type="button" data-copy="k2">복사</button></div>
+            </div>
+            <div class="callout warn"><b>⚠️</b><span>시크릿 키가 클라이언트 코드나 GitHub에 노출되지 않도록 주의하세요. 노출 시 즉시 콘솔에서 재발급하세요. (위 키는 데모용 예시 값입니다.)</span></div>
+          </article>
+
+          <article class="doc-sec" id="doc-request">
+            <h3><span class="no">03</span>결제 요청 (SDK)</h3>
+            <p>결제 페이지에 SDK 스크립트를 추가하고, 결제 버튼 클릭 시 <code>requestPayment()</code>를 호출합니다.</p>
+            <div class="code-box">
+              <div class="code-tabs" role="tablist" aria-label="예제 선택">
+                <button role="tab" id="rq-html" aria-controls="rp-html" type="button">HTML</button>
+                <button role="tab" id="rq-react" aria-controls="rp-react" type="button">React</button>
+              </div>
+              <div class="code-panel" role="tabpanel" id="rp-html" aria-labelledby="rq-html">
+<pre><code data-lang="html">&lt;script src="https://js.koratechit.com/v1/pay.js"&gt;&lt;/script&gt;
+&lt;button id="payBtn"&gt;결제하기&lt;/button&gt;
+&lt;script&gt;
+  const kt = KoratechPay('test_ck_KT2026D5GePWvyJnrK0W0k6gzMLv');
+  document.getElementById('payBtn').addEventListener('click', () =&gt; {
+    kt.requestPayment({
+      method: 'CARD',            // CARD | EASY_PAY | TRANSFER | VIRTUAL_ACCOUNT
+      amount: 39000,
+      orderId: crypto.randomUUID(),
+      orderName: '울 블렌드 하프 코트 외 1건',
+      customerEmail: 'buyer@example.com',
+      successUrl: location.origin + '/success',
+      failUrl: location.origin + '/fail'
+    });
+  });
+&lt;/script&gt;</code></pre>
+              </div>
+              <div class="code-panel" role="tabpanel" id="rp-react" aria-labelledby="rq-react">
+<pre><code data-lang="js">import { loadKoratechPay } from '@koratech/pay-sdk';
+
+export default function CheckoutButton({ order }) {
+  const onPay = async () =&gt; {
+    const kt = await loadKoratechPay(process.env.NEXT_PUBLIC_KT_CLIENT_KEY);
+    await kt.requestPayment({
+      method: 'EASY_PAY',
+      amount: order.amount,
+      orderId: order.id,
+      orderName: order.name,
+      successUrl: `${window.location.origin}/success`,
+      failUrl: `${window.location.origin}/fail`
+    });
+  };
+  return &lt;button onClick={onPay}&gt;결제하기&lt;/button&gt;;
+}</code></pre>
+              </div>
+            </div>
+          </article>
+
+          <article class="doc-sec" id="doc-confirm">
+            <h3><span class="no">04</span>결제 승인 (API)</h3>
+            <p>successUrl로 전달된 값을 서버에서 검증한 뒤 승인 API를 호출합니다. 인증은 <code>Basic base64(시크릿키:)</code> 방식입니다.</p>
+            <div class="endpoint"><span class="m post">POST</span>https://api.koratechit.com/v1/payments/confirm</div>
+            <div class="tbl-wrap">
+              <table class="tbl">
+                <thead><tr><th>파라미터</th><th>타입</th><th>필수</th><th>설명</th></tr></thead>
+                <tbody>
+                  <tr><td><code>paymentKey</code></td><td>string</td><td>필수</td><td>결제의 고유 키. 최대 200자</td></tr>
+                  <tr><td><code>orderId</code></td><td>string</td><td>필수</td><td>가맹점 주문번호. 영문·숫자·<code>-</code> <code>_</code>, 6–64자</td></tr>
+                  <tr><td><code>amount</code></td><td>integer</td><td>필수</td><td>결제 금액. 요청 시 금액과 반드시 일치해야 함</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="endpoint"><span class="m get">GET</span>/v1/payments/{paymentKey}<span style="color:var(--gray-500)">— 결제 조회</span></div>
+            <div class="endpoint"><span class="m post">POST</span>/v1/payments/{paymentKey}/cancel<span style="color:var(--gray-500)">— 결제 취소 (부분취소 지원)</span></div>
+          </article>
+
+          <article class="doc-sec" id="doc-webhook">
+            <h3><span class="no">05</span>웹훅 설정</h3>
+            <p>가상계좌 입금, 결제 취소 등 비동기 이벤트는 웹훅으로 전달됩니다. 요청 헤더 <code>KT-Signature</code>로 서명을 검증하세요.</p>
+            <div class="code-box">
+              <div class="code-tabs" role="tablist" aria-label="웹훅 예제">
+                <button role="tab" id="wh-node" aria-controls="wp-node" type="button">Node.js</button>
+                <button role="tab" id="wh-json" aria-controls="wp-json" type="button">Payload</button>
+              </div>
+              <div class="code-panel" role="tabpanel" id="wp-node" aria-labelledby="wh-node">
+<pre><code data-lang="js">import crypto from 'crypto';
+
+app.post('/webhooks/koratech', express.raw({ type: 'application/json' }), (req, res) =&gt; {
+  const sig = req.header('KT-Signature');
+  const expected = crypto.createHmac('sha256', process.env.KT_WEBHOOK_SECRET)
+    .update(req.body).digest('hex');
+  if (sig !== expected) return res.sendStatus(401);
+
+  const event = JSON.parse(req.body);
+  if (event.eventType === 'PAYMENT_STATUS_CHANGED') {
+    // event.data.status: DONE | CANCELED | WAITING_FOR_DEPOSIT ...
+  }
+  res.sendStatus(200); // 10초 이내 200 응답, 실패 시 최대 7회 재전송
+});</code></pre>
+              </div>
+              <div class="code-panel" role="tabpanel" id="wp-json" aria-labelledby="wh-json">
+<pre><code data-lang="json">{
+  "eventType": "PAYMENT_STATUS_CHANGED",
+  "createdAt": "2026-10-08T10:30:00+09:00",
+  "data": {
+    "paymentKey": "kt_pay_5EnNZRJGvaBX7zk2yd8ydw26XvwXkLrx9POLqKQjmAw4b0e1",
+    "orderId": "ORDER_20261008_001",
+    "status": "DONE",
+    "method": "CARD",
+    "totalAmount": 39000,
+    "approvedAt": "2026-10-08T10:29:58+09:00"
+  }
+}</code></pre>
+              </div>
+            </div>
+          </article>
+
+          <article class="doc-sec" id="doc-status">
+            <h3><span class="no">06</span>결제 상태 코드</h3>
+            <p>결제 객체의 <code>status</code> 필드 값입니다.</p>
+            <div class="tbl-wrap">
+              <table class="tbl">
+                <thead><tr><th>상태</th><th>설명</th></tr></thead>
+                <tbody>
+                  <tr><td><span class="st ready">READY</span></td><td>결제가 생성되고 구매자 인증 전인 상태</td></tr>
+                  <tr><td><span class="st prog">IN_PROGRESS</span></td><td>구매자 인증 완료, 승인 API 호출 대기</td></tr>
+                  <tr><td><span class="st wait">WAITING_FOR_DEPOSIT</span></td><td>가상계좌 발급 완료, 입금 대기</td></tr>
+                  <tr><td><span class="st done">DONE</span></td><td>결제 승인 완료</td></tr>
+                  <tr><td><span class="st cancel">CANCELED</span></td><td>전액 취소</td></tr>
+                  <tr><td><span class="st cancel">PARTIAL_CANCELED</span></td><td>부분 취소</td></tr>
+                  <tr><td><span class="st cancel">ABORTED</span></td><td>승인 실패</td></tr>
+                  <tr><td><span class="st ready">EXPIRED</span></td><td>유효시간 경과로 만료</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </article>
+
+          <article class="doc-sec" id="doc-errors">
+            <h3><span class="no">07</span>에러 코드</h3>
+            <p>에러 응답은 <code>{ "code": "...", "message": "..." }</code> 형식으로 반환됩니다.</p>
+            <div class="tbl-wrap">
+              <table class="tbl">
+                <thead><tr><th>HTTP</th><th>코드</th><th>설명 · 조치</th></tr></thead>
+                <tbody>
+                  <tr><td>400</td><td><code>INVALID_REQUEST</code></td><td>필수 파라미터 누락 또는 형식 오류</td></tr>
+                  <tr><td>400</td><td><code>AMOUNT_MISMATCH</code></td><td>요청 금액과 승인 금액 불일치 — 주문 금액을 확인하세요</td></tr>
+                  <tr><td>401</td><td><code>UNAUTHORIZED_KEY</code></td><td>시크릿 키 오류 — 키와 인코딩 방식을 확인하세요</td></tr>
+                  <tr><td>403</td><td><code>REJECT_CARD_COMPANY</code></td><td>카드사 승인 거절 — 다른 결제수단 안내</td></tr>
+                  <tr><td>404</td><td><code>NOT_FOUND_PAYMENT</code></td><td>존재하지 않는 paymentKey</td></tr>
+                  <tr><td>409</td><td><code>ALREADY_PROCESSED</code></td><td>이미 승인 또는 취소된 결제</td></tr>
+                  <tr><td>500</td><td><code>PROVIDER_ERROR</code></td><td>일시적 오류 — 잠시 후 재시도 (멱등키 사용 권장)</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </article>
+
+          <article class="doc-sec" id="doc-fee">
+            <h3><span class="no">08</span>수수료 계산기</h3>
+            <p>결제 금액과 결제수단을 입력하면 예상 수수료와 정산 금액을 계산합니다.</p>
+            <div class="calc" id="feeCalc">
+              <div>
+                <div class="f"><label for="calcAmount">결제 금액 (원)</label><input id="calcAmount" type="text" inputmode="numeric" value="1,000,000"></div>
+                <div class="f"><label for="calcMethod">결제 수단</label>
+                  <select id="calcMethod">
+                    <option data-rate="3.2">신용·체크카드 (3.2%)</option>
+                    <option data-rate="3.4">간편결제 (3.4%)</option>
+                    <option data-rate="2.0">계좌이체 (2.0%)</option>
+                    <option data-rate="0" data-fixed="300">가상계좌 (건당 300원)</option>
+                  </select>
+                </div>
+                <div class="f"><label for="calcCycle">정산 주기</label>
+                  <select id="calcCycle">
+                    <option data-extra="0">D+3 (기본)</option>
+                    <option data-extra="0.2">D+1 (+0.2%)</option>
+                    <option data-extra="0.5">실시간 정산 (+0.5%)</option>
+                  </select>
+                </div>
+              </div>
+              <div class="calc-out" aria-live="polite">
+                <div class="r"><span>적용 요율</span><b data-o="rate">-</b></div>
+                <div class="r"><span>결제 수수료</span><b data-o="fee">-</b></div>
+                <div class="r"><span>부가세 (10%)</span><b data-o="vat">-</b></div>
+                <div class="r total"><span>예상 정산 금액</span><b data-o="net">-</b></div>
+                <p class="calc-note">* 예시 요율입니다. 실제 요율은 업종·거래 규모·계약 조건에 따라 달라집니다.</p>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMMUNITY -->
+  <section class="pg-sec" id="community">
+    <div class="container">
+      <h2 class="pg-title reveal">커뮤니티 · 지원</h2>
+      <div class="comm-grid">
+        <a class="comm big reveal" href="../index.html#contact"><div><div class="ic" aria-hidden="true">💬</div><h3>실시간 기술 문의</h3><p>결제 전문 엔지니어가 비즈니스 상황에 맞춰 연동을 직접 도와드려요.</p></div><span class="btn btn-light btn-sm" style="align-self:flex-start">문의하기 →</span></a>
+        <a class="comm reveal" data-delay="1" href="#" data-soon><div class="ic" aria-hidden="true">🟢</div><h3>시스템 상태</h3><p>API · 결제창 · 정산 시스템 상태를 확인하세요.</p><span class="status-dot">모든 시스템 정상</span></a>
+        <a class="comm reveal" data-delay="2" href="#" data-soon><div class="ic" aria-hidden="true">🐙</div><h3>GitHub 샘플</h3><p>언어·프레임워크별 연동 샘플 코드를 확인하세요.</p></a>
+        <a class="comm reveal" data-delay="1" href="#" data-soon><div class="ic" aria-hidden="true">❓</div><h3>자주 묻는 질문</h3><p>연동 과정에서 생긴 궁금증을 해결하세요.</p></a>
+        <a class="comm reveal" data-delay="2" href="#" data-soon><div class="ic" aria-hidden="true">📝</div><h3>릴리즈 노트</h3><p>새로운 기능과 변경 사항을 알려드려요.</p></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="pg-cta">
+    <div class="container">
+      <img class="cta-symbol reveal" src="../../assets/img/symbol.png" alt="" width="132" height="109" loading="lazy">
+      <h2 class="reveal">결제 연동,<br>지금 바로 시작해 보세요</h2>
+      <div class="actions reveal">
+        <a class="btn btn-pg" href="#docs">문서로 시작하기 <span class="arrow">→</span></a>
+        <a class="btn btn-gray" href="../index.html#contact">가맹점 계약 문의</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a class="logo" href="../index.html"><img class="logo-img" src="../../assets/img/logo-horizontal-white.png" alt="KORATECH IT SOLUTIONS" width="163" height="44" loading="lazy"></a>
+        <p>홈페이지 · 쇼핑몰 · PG 결제를 한 팀에서.<br>비즈니스가 성장하는 구조를 만듭니다.</p>
+      </div>
+      <div class="footer-cols">
+        <div><h4>SERVICE</h4><ul><li><a href="../index.html#services">홈페이지 제작·관리</a></li><li><a href="../index.html#services">쇼핑몰 제작·관리</a></li><li><a href="../index.html#services">PG 결제 연동·관리</a></li></ul></div>
+        <div><h4>SOLUTION</h4><ul><li><a href="../shop/index.html">쇼핑몰 데모</a></li><li><a href="../pg/index.html">PG 개발자센터</a></li><li><a href="../pg/index.html#doc-fee">수수료 계산기</a></li></ul></div>
+        <div><h4>COMPANY</h4><ul><li><a href="../index.html#about">회사소개</a></li><li><a href="../index.html#news">소식</a></li><li><a href="../index.html#contact">문의하기</a></li></ul></div>
+      </div>
+    </div>
+    <div class="footer-info">
+      <p class="co"><!--@CO_NAME-->주식회사 코라테크아이티솔루션즈<!--/@CO_NAME--></p>
+      <p><span class="item">대표이사 <!--@CEO-->홍길동<!--/@CEO--></span><span class="sep"></span><span class="item">사업자등록번호 <!--@BIZNO-->000-00-00000<!--/@BIZNO--></span><span class="sep"></span><span class="item">통신판매업신고 <!--@ECOMNO-->제0000-서울강남-00000호<!--/@ECOMNO--></span></p>
+      <p><span class="item">주소 <!--@ADDR-->서울특별시 강남구 테헤란로 000, 00층<!--/@ADDR--></span></p>
+      <p><span class="item">대표전화 <!--@TEL--><a href="tel:0200000000">02-0000-0000</a><!--/@TEL--></span><span class="sep"></span><span class="item">팩스 <!--@FAX-->02-0000-0001<!--/@FAX--></span><span class="sep"></span><span class="item">이메일 <!--@EMAIL--><a href="mailto:contact@koratechit.com">contact@koratechit.com</a><!--/@EMAIL--></span></p>
+      <p><span class="item">개인정보보호책임자 <!--@PRIVACY-->홍길동<!--/@PRIVACY--></span><span class="sep"></span><span class="item">운영시간 <!--@HOURS-->평일 09:00 – 18:00 (주말·공휴일 휴무)<!--/@HOURS--></span></p>
+    </div>
+    <div class="footer-bottom">
+      <p>© <span class="js-year">2026</span> <!--@CO_NAME_EN-->KORATECH IT SOLUTIONS<!--/@CO_NAME_EN-->. All rights reserved.</p>
+      <nav class="footer-legal" aria-label="약관"><a href="#" data-soon>개인정보처리방침</a><a href="#" data-soon>이용약관</a><a href="#" data-soon>사업자정보확인</a></nav>
+    </div>
+  </div>
+</footer>
+
+<button class="to-top" type="button" aria-label="맨 위로">↑</button>
+</body>
+</html>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url><loc>https://koratechit.com/ko/</loc><xhtml:link rel="alternate" hreflang="en" href="https://koratechit.com/en/"/><priority>1.0</priority></url>
+  <url><loc>https://koratechit.com/en/</loc><xhtml:link rel="alternate" hreflang="ko" href="https://koratechit.com/ko/"/><priority>1.0</priority></url>
+  <url><loc>https://koratechit.com/ko/pg/</loc><xhtml:link rel="alternate" hreflang="en" href="https://koratechit.com/en/pg/"/><priority>0.8</priority></url>
+  <url><loc>https://koratechit.com/en/pg/</loc><xhtml:link rel="alternate" hreflang="ko" href="https://koratechit.com/ko/pg/"/><priority>0.8</priority></url>
+</urlset>

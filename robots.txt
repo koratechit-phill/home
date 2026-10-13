@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /ko/shop/
+Disallow: /en/shop/
+Sitemap: https://koratechit.com/sitemap.xml

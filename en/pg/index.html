@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>KORATECH Developers — PG Payment Developer Center | KORATECH IT SOLUTIONS</title>
+  <meta name="description" content="Integration guides, API reference, code samples in every language, test keys, webhooks and a fee calculator — every tool you need to integrate KORATECH payments.">
+  <link rel="canonical" href="https://koratechit.com/en/pg/">
+  <link rel="alternate" hreflang="ko" href="https://koratechit.com/ko/pg/">
+  <link rel="alternate" hreflang="en" href="https://koratechit.com/en/pg/">
+  <meta property="og:image" content="https://koratechit.com/assets/img/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="icon" href="../../assets/img/favicon.ico" sizes="any">
+  <link rel="icon" href="../../assets/img/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="../../assets/img/apple-touch-icon.png">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap">
+  <link rel="stylesheet" href="../../assets/css/common.css">
+  <link rel="stylesheet" href="../../assets/css/pg.css">
+  <script src="../../assets/js/common.js" defer></script>
+  <script src="../../assets/js/pg.js" defer></script>
+</head>
+<body class="pg-body">
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header is-light">
+  <div class="container header-inner">
+    <a class="logo" href="index.html" aria-label="KORATECH Developers home"><img class="logo-img logo-color" src="../../assets/img/logo-horizontal.png" alt="" width="148" height="40"><img class="logo-img logo-white" src="../../assets/img/logo-horizontal-white.png" alt="" width="148" height="40"><span class="dev-tag">Developers</span></a>
+    <nav class="gnb" aria-label="Developer menu">
+      <a href="#docs">Guides</a>
+      <div class="has-sub">
+        <button type="button" aria-haspopup="true">API &amp; SDK</button>
+        <div class="sub-menu">
+          <a href="#doc-confirm">API Reference</a>
+          <a href="#doc-request">SDK Reference</a>
+          <a href="#doc-status">Status &amp; ENUM codes</a>
+          <a href="#doc-errors">Error codes</a>
+        </div>
+      </div>
+      <a href="#tools">Dev Tools</a>
+      <a href="#doc-fee">Fee Calculator</a>
+      <a href="#community">Support</a>
+      <a href="../index.html">Home</a>
+    </nav>
+    <div class="header-util">
+      <button class="kbd-search" type="button" data-focus-search>Search docs <kbd>⌘K</kbd></button>
+      <div class="lang-switch" aria-label="Language"><a href="../../ko/pg/index.html" hreflang="ko"><span>KO</span></a><a class="is-active" href="index.html" aria-current="true"><span>EN</span></a></div>
+      <a class="btn btn-sm btn-dark" href="../index.html#contact">Contact sales</a>
+      <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false"><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="pg-hero">
+    <div class="container">
+      <span class="chip"><i></i>Sandbox is always on</span>
+      <h1>Payments, integrated<br>in <span class="blue">a few lines of code</span></h1>
+      <p class="lead">New to payments? No problem. Copy-paste samples and test keys let you ship a working checkout today.</p>
+      <div class="actions">
+        <a class="btn btn-pg" href="#docs">Start integrating <span class="arrow">→</span></a>
+        <a class="btn btn-gray" href="#doc-keys">Get test keys</a>
+      </div>
+
+      <div class="hero-window reveal">
+        <div class="hw-code">
+          <div class="hw-bar"><i></i><i></i><i></i><span>checkout.js</span></div>
+<pre><code data-lang="js">// 1. Initialize the SDK
+const kt = KoratechPay('test_ck_KT2026xxxxxxxx');
+
+// 2. Request a payment
+await kt.requestPayment({
+  method: 'CARD',
+  amount: 39000,
+  orderId: 'ORDER_20261008_001',
+  orderName: 'Wool Blend Half Coat',
+  successUrl: location.origin + '/success',
+  failUrl: location.origin + '/fail'
+});</code></pre>
+        </div>
+        <div class="hw-preview">
+          <div class="pay-widget">
+            <h4>Payment method</h4>
+            <div class="pay-methods">
+              <button type="button" class="is-active" aria-pressed="true">Credit / Debit</button>
+              <button type="button" aria-pressed="false">Easy Pay</button>
+              <button type="button" aria-pressed="false">Bank Transfer</button>
+              <button type="button" aria-pressed="false">Virtual Account</button>
+            </div>
+            <div class="pay-sum"><span>Total</span><b>₩39,000</b></div>
+            <button class="btn btn-pg" type="button">Pay ₩39,000</button>
+            <p class="pay-result" aria-live="polite"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pg-sec">
+    <div class="container">
+      <h2 class="pg-title reveal">We save developers time</h2>
+      <div class="feat-grid">
+        <div class="feat reveal"><div class="ic" aria-hidden="true">⚡</div><h3>One-line integration</h3><p>A single SDK covers cards, easy-pay wallets, bank transfer, virtual accounts and subscriptions.</p></div>
+        <div class="feat reveal" data-delay="1"><div class="ic" aria-hidden="true">🧩</div><h3>No-code method control</h3><p>Add, reorder or hide payment methods from the dashboard — no code changes required.</p></div>
+        <div class="feat reveal" data-delay="2"><div class="ic" aria-hidden="true">🛡️</div><h3>Secure server-side approval</h3><p>Server approval blocks amount tampering, and signed webhooks keep every event trustworthy.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pg-sec gray">
+    <div class="container">
+      <h2 class="pg-title reveal">Copy, paste —<br>and you're integrated</h2>
+      <p class="pg-sub reveal">Payment approval API samples. Always keep your secret key on the server.</p>
+      <div class="code-box reveal">
+        <div class="code-tabs" role="tablist" aria-label="Language">
+          <button role="tab" id="ct-node" aria-controls="cp-node" type="button">Node.js</button>
+          <button role="tab" id="ct-py" aria-controls="cp-py" type="button">Python</button>
+          <button role="tab" id="ct-java" aria-controls="cp-java" type="button">Java</button>
+          <button role="tab" id="ct-php" aria-controls="cp-php" type="button">PHP</button>
+          <button role="tab" id="ct-curl" aria-controls="cp-curl" type="button">cURL</button>
+        </div>
+        <div class="code-panel" role="tabpanel" id="cp-node" aria-labelledby="ct-node">
+<pre><code data-lang="js">// POST /api/payments/confirm  (Express)
+import express from 'express';
+const app = express();
+app.use(express.json());
+
+const SECRET_KEY = process.env.KT_SECRET_KEY; // test_sk_...
+const auth = 'Basic ' + Buffer.from(SECRET_KEY + ':').toString('base64');
+
+app.post('/api/payments/confirm', async (req, res) =&gt; {
+  const { paymentKey, orderId, amount } = req.body;
+
+  // Verify the amount — always compare with your DB
+  const order = await db.orders.find(orderId);
+  if (order.amount !== amount) return res.status(400).json({ code: 'AMOUNT_MISMATCH' });
+
+  const r = await fetch('https://api.koratechit.com/v1/payments/confirm', {
+    method: 'POST',
+    headers: { Authorization: auth, 'Content-Type': 'application/json' },
+    body: JSON.stringify({ paymentKey, orderId, amount })
+  });
+  const data = await r.json();
+  res.status(r.status).json(data);
+});</code></pre>
+        </div>
+        <div class="code-panel" role="tabpanel" id="cp-py" aria-labelledby="ct-py">
+<pre><code data-lang="python"># pip install requests
+import base64, os, requests
+
+SECRET_KEY = os.environ["KT_SECRET_KEY"]  # test_sk_...
+auth = base64.b64encode(f"{SECRET_KEY}:".encode()).decode()
+
+def confirm_payment(payment_key, order_id, amount):
+    r = requests.post(
+        "https://api.koratechit.com/v1/payments/confirm",
+        headers={"Authorization": f"Basic {auth}", "Content-Type": "application/json"},
+        json={"paymentKey": payment_key, "orderId": order_id, "amount": amount},
+        timeout=10,
+    )
+    r.raise_for_status()
+    return r.json()  # status == "DONE"</code></pre>
+        </div>
+        <div class="code-panel" role="tabpanel" id="cp-java" aria-labelledby="ct-java">
+<pre><code data-lang="java">// Java 11+ HttpClient
+String secretKey = System.getenv("KT_SECRET_KEY");
+String auth = "Basic " + Base64.getEncoder().encodeToString((secretKey + ":").getBytes());
+
+String body = String.format(
+  "{\"paymentKey\":\"%s\",\"orderId\":\"%s\",\"amount\":%d}", paymentKey, orderId, amount);
+
+HttpRequest request = HttpRequest.newBuilder()
+  .uri(URI.create("https://api.koratechit.com/v1/payments/confirm"))
+  .header("Authorization", auth)
+  .header("Content-Type", "application/json")
+  .POST(HttpRequest.BodyPublishers.ofString(body))
+  .build();
+
+HttpResponse&lt;String&gt; response = HttpClient.newHttpClient()
+  .send(request, HttpResponse.BodyHandlers.ofString());</code></pre>
+        </div>
+        <div class="code-panel" role="tabpanel" id="cp-php" aria-labelledby="ct-php">
+<pre><code data-lang="php">&lt;?php
+$secretKey = getenv('KT_SECRET_KEY'); // test_sk_...
+$payload = json_encode([
+  'paymentKey' =&gt; $_POST['paymentKey'],
+  'orderId'    =&gt; $_POST['orderId'],
+  'amount'     =&gt; (int) $_POST['amount'],
+]);
+
+$ch = curl_init('https://api.koratechit.com/v1/payments/confirm');
+curl_setopt_array($ch, [
+  CURLOPT_POST           =&gt; true,
+  CURLOPT_RETURNTRANSFER =&gt; true,
+  CURLOPT_USERPWD        =&gt; $secretKey . ':',
+  CURLOPT_HTTPHEADER     =&gt; ['Content-Type: application/json'],
+  CURLOPT_POSTFIELDS     =&gt; $payload,
+]);
+$result = json_decode(curl_exec($ch), true);
+curl_close($ch);</code></pre>
+        </div>
+        <div class="code-panel" role="tabpanel" id="cp-curl" aria-labelledby="ct-curl">
+<pre><code data-lang="bash">curl --request POST \
+  --url https://api.koratechit.com/v1/payments/confirm \
+  --user test_sk_KT2026xxxxxxxx: \
+  --header 'Content-Type: application/json' \
+  --data '{
+    "paymentKey": "kt_pay_5EnNZRJGvaBX7zk2yd8ydw26XvwXkLrx9POLqKQjmAw4b0e1",
+    "orderId": "ORDER_20261008_001",
+    "amount": 39000
+  }'</code></pre>
+      </div>
+    </div>
+  </section>
+
+  <section class="pg-sec" id="tools">
+    <div class="container">
+      <h2 class="pg-title reveal">Developer tools</h2>
+      <p class="pg-sub reveal">Everything from integration to operations, in one place.</p>
+      <div class="tool-grid">
+        <a class="tool reveal" href="#doc-confirm"><div class="ic" aria-hidden="true">📘</div><h3>API &amp; SDK</h3><p>Full API and SDK specifications.</p></a>
+        <a class="tool reveal" data-delay="1" href="#" data-soon><div class="ic" aria-hidden="true">🧪</div><h3>API Explorer</h3><p>Run any API right in your browser, no setup.</p></a>
+        <a class="tool reveal" data-delay="2" href="#" data-soon><div class="ic" aria-hidden="true">🏖️</div><h3>Sandbox</h3><p>Validate the whole flow with no real money moving.</p></a>
+        <a class="tool reveal" data-delay="3" href="#doc-keys"><div class="ic" aria-hidden="true">🔑</div><h3>My Dev Info</h3><p>Manage API keys, webhook URLs and test payments.</p></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="pg-sec gray" id="docs">
+    <div class="container">
+      <h2 class="pg-title reveal">Quick integration guide</h2>
+      <p class="pg-sub reveal">Complete a payment in four steps with the payment widget.</p>
+      <div class="docs">
+        <aside class="docs-nav" aria-label="Docs contents">
+          <label class="sr-only" for="docFilter">Search docs</label>
+          <input id="docFilter" type="search" placeholder="Search docs (⌘K)">
+          <h4>Get started</h4>
+          <a href="#doc-flow">Payment flow</a>
+          <a href="#doc-keys">API keys</a>
+          <h4>Integrate</h4>
+          <a href="#doc-request">Request payment (SDK)</a>
+          <a href="#doc-confirm">Confirm payment (API)</a>
+          <a href="#doc-webhook">Webhooks</a>
+          <h4>Reference</h4>
+          <a href="#doc-status">Payment status</a>
+          <a href="#doc-errors">Error codes</a>
+          <a href="#doc-fee">Fee calculator</a>
+        </aside>
+        <div class="docs-content">
+
+          <article class="doc-sec" id="doc-flow">
+            <h3><span class="no">01</span>Understand the payment flow</h3>
+            <p>A KORATECH payment has three stages: <b>request → authenticate → confirm</b>. After the buyer authenticates, they're redirected to your <code>successUrl</code>; the payment completes only when your server calls the confirm API.</p>
+            <ol class="flow">
+              <li><b>Request</b>Open checkout from the client with the SDK.</li>
+              <li><b>Authenticate</b>Buyer completes card or wallet authentication.</li>
+              <li><b>Redirect</b>paymentKey, orderId and amount are returned.</li>
+              <li><b>Confirm</b>Call the confirm API — status becomes DONE.</li>
+            </ol>
+            <div class="callout"><b>💡</b><span>If the confirm API isn't called within <b>10 minutes</b> of authentication, the payment expires automatically (<code>EXPIRED</code>).</span></div>
+          </article>
+
+          <article class="doc-sec" id="doc-keys">
+            <h3><span class="no">02</span>API keys</h3>
+            <p>Test keys unlock every feature, even before you sign a merchant contract. Use the client key in the browser and the secret key on your server only.</p>
+            <div class="keys">
+              <div class="key-row"><span>Client key</span><code id="k1">test_ck_KT2026D5GePWvyJnrK0W0k6gzMLv</code><button type="button" data-copy="k1">Copy</button></div>
+              <div class="key-row"><span>Secret key</span><code id="k2">test_sk_KT2026zXLkKEypNArWmo50nmlJ4b</code><button type="button" data-copy="k2">Copy</button></div>
+            </div>
+            <div class="callout warn"><b>⚠️</b><span>Never expose your secret key in client code or on GitHub. If it leaks, reissue it from the console immediately. (The keys above are demo values.)</span></div>
+          </article>
+
+          <article class="doc-sec" id="doc-request">
+            <h3><span class="no">03</span>Request payment (SDK)</h3>
+            <p>Add the SDK script to your checkout page and call <code>requestPayment()</code> when the pay button is clicked.</p>
+            <div class="code-box">
+              <div class="code-tabs" role="tablist" aria-label="Sample">
+                <button role="tab" id="rq-html" aria-controls="rp-html" type="button">HTML</button>
+                <button role="tab" id="rq-react" aria-controls="rp-react" type="button">React</button>
+              </div>
+              <div class="code-panel" role="tabpanel" id="rp-html" aria-labelledby="rq-html">
+<pre><code data-lang="html">&lt;script src="https://js.koratechit.com/v1/pay.js"&gt;&lt;/script&gt;
+&lt;button id="payBtn"&gt;Pay now&lt;/button&gt;
+&lt;script&gt;
+  const kt = KoratechPay('test_ck_KT2026D5GePWvyJnrK0W0k6gzMLv');
+  document.getElementById('payBtn').addEventListener('click', () =&gt; {
+    kt.requestPayment({
+      method: 'CARD',            // CARD | EASY_PAY | TRANSFER | VIRTUAL_ACCOUNT
+      amount: 39000,
+      orderId: crypto.randomUUID(),
+      orderName: 'Wool Blend Half Coat and 1 more',
+      customerEmail: 'buyer@example.com',
+      successUrl: location.origin + '/success',
+      failUrl: location.origin + '/fail'
+    });
+  });
+&lt;/script&gt;</code></pre>
+              </div>
+              <div class="code-panel" role="tabpanel" id="rp-react" aria-labelledby="rq-react">
+<pre><code data-lang="js">import { loadKoratechPay } from '@koratech/pay-sdk';
+
+export default function CheckoutButton({ order }) {
+  const onPay = async () =&gt; {
+    const kt = await loadKoratechPay(process.env.NEXT_PUBLIC_KT_CLIENT_KEY);
+    await kt.requestPayment({
+      method: 'EASY_PAY',
+      amount: order.amount,
+      orderId: order.id,
+      orderName: order.name,
+      successUrl: `${window.location.origin}/success`,
+      failUrl: `${window.location.origin}/fail`
+    });
+  };
+  return &lt;button onClick={onPay}&gt;Pay now&lt;/button&gt;;
+}</code></pre>
+              </div>
+            </div>
+          </article>
+
+          <article class="doc-sec" id="doc-confirm">
+            <h3><span class="no">04</span>Confirm payment (API)</h3>
+            <p>Validate the values passed to your successUrl on the server, then call the confirm API. Authenticate with <code>Basic base64(secretKey:)</code>.</p>
+            <div class="endpoint"><span class="m post">POST</span>https://api.koratechit.com/v1/payments/confirm</div>
+            <div class="tbl-wrap">
+              <table class="tbl">
+                <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                <tbody>
+                  <tr><td><code>paymentKey</code></td><td>string</td><td>Yes</td><td>Unique payment key. Up to 200 chars</td></tr>
+                  <tr><td><code>orderId</code></td><td>string</td><td>Yes</td><td>Your order ID. Letters, digits, <code>-</code> <code>_</code>, 6–64 chars</td></tr>
+                  <tr><td><code>amount</code></td><td>integer</td><td>Yes</td><td>Payment amount. Must match the requested amount</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="endpoint"><span class="m get">GET</span>/v1/payments/{paymentKey}<span style="color:var(--gray-500)">— Retrieve payment</span></div>
+            <div class="endpoint"><span class="m post">POST</span>/v1/payments/{paymentKey}/cancel<span style="color:var(--gray-500)">— Cancel (partial supported)</span></div>
+          </article>
+
+          <article class="doc-sec" id="doc-webhook">
+            <h3><span class="no">05</span>Webhooks</h3>
+            <p>Async events such as virtual account deposits and cancellations arrive via webhook. Verify the <code>KT-Signature</code> header on every request.</p>
+            <div class="code-box">
+              <div class="code-tabs" role="tablist" aria-label="Webhook sample">
+                <button role="tab" id="wh-node" aria-controls="wp-node" type="button">Node.js</button>
+                <button role="tab" id="wh-json" aria-controls="wp-json" type="button">Payload</button>
+              </div>
+              <div class="code-panel" role="tabpanel" id="wp-node" aria-labelledby="wh-node">
+<pre><code data-lang="js">import crypto from 'crypto';
+
+app.post('/webhooks/koratech', express.raw({ type: 'application/json' }), (req, res) =&gt; {
+  const sig = req.header('KT-Signature');
+  const expected = crypto.createHmac('sha256', process.env.KT_WEBHOOK_SECRET)
+    .update(req.body).digest('hex');
+  if (sig !== expected) return res.sendStatus(401);
+
+  const event = JSON.parse(req.body);
+  if (event.eventType === 'PAYMENT_STATUS_CHANGED') {
+    // event.data.status: DONE | CANCELED | WAITING_FOR_DEPOSIT ...
+  }
+  res.sendStatus(200); // respond 200 within 10s; retried up to 7 times on failure
+});</code></pre>
+              </div>
+              <div class="code-panel" role="tabpanel" id="wp-json" aria-labelledby="wh-json">
+<pre><code data-lang="json">{
+  "eventType": "PAYMENT_STATUS_CHANGED",
+  "createdAt": "2026-10-08T10:30:00+09:00",
+  "data": {
+    "paymentKey": "kt_pay_5EnNZRJGvaBX7zk2yd8ydw26XvwXkLrx9POLqKQjmAw4b0e1",
+    "orderId": "ORDER_20261008_001",
+    "status": "DONE",
+    "method": "CARD",
+    "totalAmount": 39000,
+    "approvedAt": "2026-10-08T10:29:58+09:00"
+  }
+}</code></pre>
+              </div>
+            </div>
+          </article>
+
+          <article class="doc-sec" id="doc-status">
+            <h3><span class="no">06</span>Payment status</h3>
+            <p>Values of the <code>status</code> field on the payment object.</p>
+            <div class="tbl-wrap">
+              <table class="tbl">
+                <thead><tr><th>Status</th><th>Description</th></tr></thead>
+                <tbody>
+                  <tr><td><span class="st ready">READY</span></td><td>Payment created, before buyer authentication</td></tr>
+                  <tr><td><span class="st prog">IN_PROGRESS</span></td><td>Authenticated, awaiting confirm API call</td></tr>
+                  <tr><td><span class="st wait">WAITING_FOR_DEPOSIT</span></td><td>Virtual account issued, awaiting deposit</td></tr>
+                  <tr><td><span class="st done">DONE</span></td><td>Payment approved</td></tr>
+                  <tr><td><span class="st cancel">CANCELED</span></td><td>Fully canceled</td></tr>
+                  <tr><td><span class="st cancel">PARTIAL_CANCELED</span></td><td>Partially canceled</td></tr>
+                  <tr><td><span class="st cancel">ABORTED</span></td><td>Approval failed</td></tr>
+                  <tr><td><span class="st ready">EXPIRED</span></td><td>Expired after the validity window</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </article>
+
+          <article class="doc-sec" id="doc-errors">
+            <h3><span class="no">07</span>Error codes</h3>
+            <p>Errors are returned as <code>{ "code": "...", "message": "..." }</code>.</p>
+            <div class="tbl-wrap">
+              <table class="tbl">
+                <thead><tr><th>HTTP</th><th>Code</th><th>Meaning · Action</th></tr></thead>
+                <tbody>
+                  <tr><td>400</td><td><code>INVALID_REQUEST</code></td><td>Missing or malformed parameter</td></tr>
+                  <tr><td>400</td><td><code>AMOUNT_MISMATCH</code></td><td>Requested and confirmed amounts differ — check the order amount</td></tr>
+                  <tr><td>401</td><td><code>UNAUTHORIZED_KEY</code></td><td>Invalid secret key — check the key and encoding</td></tr>
+                  <tr><td>403</td><td><code>REJECT_CARD_COMPANY</code></td><td>Declined by card issuer — offer another method</td></tr>
+                  <tr><td>404</td><td><code>NOT_FOUND_PAYMENT</code></td><td>paymentKey does not exist</td></tr>
+                  <tr><td>409</td><td><code>ALREADY_PROCESSED</code></td><td>Payment already confirmed or canceled</td></tr>
+                  <tr><td>500</td><td><code>PROVIDER_ERROR</code></td><td>Temporary error — retry later (use an idempotency key)</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </article>
+
+          <article class="doc-sec" id="doc-fee">
+            <h3><span class="no">08</span>Fee calculator</h3>
+            <p>Enter an amount and method to estimate fees and your settlement amount.</p>
+            <div class="calc" id="feeCalc">
+              <div>
+                <div class="f"><label for="calcAmount">Amount (KRW)</label><input id="calcAmount" type="text" inputmode="numeric" value="1,000,000"></div>
+                <div class="f"><label for="calcMethod">Method</label>
+                  <select id="calcMethod">
+                    <option data-rate="3.2">Credit / Debit card (3.2%)</option>
+                    <option data-rate="3.4">Easy Pay (3.4%)</option>
+                    <option data-rate="2.0">Bank transfer (2.0%)</option>
+                    <option data-rate="0" data-fixed="300">Virtual account (₩300 / txn)</option>
+                  </select>
+                </div>
+                <div class="f"><label for="calcCycle">Settlement cycle</label>
+                  <select id="calcCycle">
+                    <option data-extra="0">D+3 (standard)</option>
+                    <option data-extra="0.2">D+1 (+0.2%)</option>
+                    <option data-extra="0.5">Instant settlement (+0.5%)</option>
+                  </select>
+                </div>
+              </div>
+              <div class="calc-out" aria-live="polite">
+                <div class="r"><span>Applied rate</span><b data-o="rate">-</b></div>
+                <div class="r"><span>Processing fee</span><b data-o="fee">-</b></div>
+                <div class="r"><span>VAT (10%)</span><b data-o="vat">-</b></div>
+                <div class="r total"><span>Est. settlement</span><b data-o="net">-</b></div>
+                <p class="calc-note">* Sample rates. Actual rates vary by industry, volume and contract terms.</p>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pg-sec" id="community">
+    <div class="container">
+      <h2 class="pg-title reveal">Community · Support</h2>
+      <div class="comm-grid">
+        <a class="comm big reveal" href="../index.html#contact"><div><div class="ic" aria-hidden="true">💬</div><h3>Live technical support</h3><p>Payment engineers help you integrate, tailored to your business.</p></div><span class="btn btn-light btn-sm" style="align-self:flex-start">Contact us →</span></a>
+        <a class="comm reveal" data-delay="1" href="#" data-soon><div class="ic" aria-hidden="true">🟢</div><h3>System status</h3><p>Check API, checkout and settlement status.</p><span class="status-dot">All systems operational</span></a>
+        <a class="comm reveal" data-delay="2" href="#" data-soon><div class="ic" aria-hidden="true">🐙</div><h3>GitHub samples</h3><p>Integration samples by language and framework.</p></a>
+        <a class="comm reveal" data-delay="1" href="#" data-soon><div class="ic" aria-hidden="true">❓</div><h3>FAQ</h3><p>Answers to common integration questions.</p></a>
+        <a class="comm reveal" data-delay="2" href="#" data-soon><div class="ic" aria-hidden="true">📝</div><h3>Release notes</h3><p>New features and changes.</p></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="pg-cta">
+    <div class="container">
+      <img class="cta-symbol reveal" src="../../assets/img/symbol.png" alt="" width="132" height="109" loading="lazy">
+      <h2 class="reveal">Start integrating<br>payments today</h2>
+      <div class="actions reveal">
+        <a class="btn btn-pg" href="#docs">Start with the docs <span class="arrow">→</span></a>
+        <a class="btn btn-gray" href="../index.html#contact">Merchant inquiry</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a class="logo" href="../index.html"><img class="logo-img" src="../../assets/img/logo-horizontal-white.png" alt="KORATECH IT SOLUTIONS" width="163" height="44" loading="lazy"></a>
+        <p>Websites · E-commerce · Payments, by one team.<br>We build the structure that grows your business.</p>
+      </div>
+      <div class="footer-cols">
+        <div><h4>SERVICE</h4><ul><li><a href="../index.html#services">Website Build &amp; Care</a></li><li><a href="../index.html#services">E-commerce Build &amp; Ops</a></li><li><a href="../index.html#services">PG Payment Integration</a></li></ul></div>
+        <div><h4>SOLUTION</h4><ul><li><a href="../shop/index.html">Shop Demo</a></li><li><a href="../pg/index.html">PG Developers</a></li><li><a href="../pg/index.html#doc-fee">Fee Calculator</a></li></ul></div>
+        <div><h4>COMPANY</h4><ul><li><a href="../index.html#about">About</a></li><li><a href="../index.html#news">News</a></li><li><a href="../index.html#contact">Contact</a></li></ul></div>
+      </div>
+    </div>
+    <div class="footer-info">
+      <p class="co"><!--@CO_NAME-->KORATECH IT SOLUTIONS Co., Ltd.<!--/@CO_NAME--></p>
+      <p><span class="item">CEO <!--@CEO-->Gildong Hong<!--/@CEO--></span><span class="sep"></span><span class="item">Business Reg. No. <!--@BIZNO-->000-00-00000<!--/@BIZNO--></span><span class="sep"></span><span class="item">E-commerce Reg. No. <!--@ECOMNO-->0000-Seoul Gangnam-00000<!--/@ECOMNO--></span></p>
+      <p><span class="item">Address <!--@ADDR-->00F, 000 Teheran-ro, Gangnam-gu, Seoul, Republic of Korea<!--/@ADDR--></span></p>
+      <p><span class="item">Tel <!--@TEL--><a href="tel:0200000000">02-0000-0000</a><!--/@TEL--></span><span class="sep"></span><span class="item">Fax <!--@FAX-->02-0000-0001<!--/@FAX--></span><span class="sep"></span><span class="item">Email <!--@EMAIL--><a href="mailto:contact@koratechit.com">contact@koratechit.com</a><!--/@EMAIL--></span></p>
+      <p><span class="item">Privacy Officer <!--@PRIVACY-->Gildong Hong<!--/@PRIVACY--></span><span class="sep"></span><span class="item">Hours <!--@HOURS-->Mon–Fri 09:00 – 18:00 KST (closed on holidays)<!--/@HOURS--></span></p>
+    </div>
+    <div class="footer-bottom">
+      <p>© <span class="js-year">2026</span> <!--@CO_NAME_EN-->KORATECH IT SOLUTIONS<!--/@CO_NAME_EN-->. All rights reserved.</p>
+      <nav class="footer-legal" aria-label="Legal"><a href="#" data-soon>Privacy Policy</a><a href="#" data-soon>Terms of Service</a><a href="#" data-soon>Business Info</a></nav>
+    </div>
+  </div>
+</footer>
+
+<button class="to-top" type="button" aria-label="Back to top">↑</button>
+</body>
+</html>

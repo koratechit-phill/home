@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>KORATECH STORE — 쇼핑몰 데모 | KORATECH IT SOLUTIONS</title>
+  <meta name="description" content="KORATECH IT SOLUTIONS가 구축하는 에디토리얼 셀렉트숍 쇼핑몰 데모입니다.">
+  <link rel="canonical" href="https://koratechit.com/ko/shop/">
+  <link rel="alternate" hreflang="ko" href="https://koratechit.com/ko/shop/">
+  <link rel="alternate" hreflang="en" href="https://koratechit.com/en/shop/">
+  <meta name="robots" content="noindex, follow">
+  <meta property="og:image" content="https://koratechit.com/assets/img/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="icon" href="../../assets/img/favicon.ico" sizes="any">
+  <link rel="icon" href="../../assets/img/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="../../assets/img/apple-touch-icon.png">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap">
+  <link rel="stylesheet" href="../../assets/css/common.css">
+  <link rel="stylesheet" href="../../assets/css/shop.css">
+  <script src="../../assets/js/common.js" defer></script>
+  <script src="../../assets/js/shop.js" defer></script>
+</head>
+<body class="shop-body">
+<a class="skip-link" href="#main">본문 바로가기</a>
+
+<div class="demo-bar">
+  <div class="container">
+    <p><img class="ci" src="../../assets/img/symbol-white.png" alt="KORATECH" width="22" height="18"><b>DEMO</b><span class="msg">KORATECH IT SOLUTIONS의 쇼핑몰 구축 데모입니다. 실제 판매·결제는 이루어지지 않습니다.</span></p>
+    <p><a href="../index.html">← KORATECH 홈</a><span class="lang-mini"><a class="is-active" href="index.html">KO</a><a href="../../en/shop/index.html" hreflang="en">EN</a></span></p>
+  </div>
+</div>
+
+<header class="shop-header">
+  <div class="container">
+    <div class="sh-top">
+      <nav class="sh-sub" aria-label="스토어 메뉴">
+        <a href="#best">Best</a><a href="#collection">Showcase</a><a href="#new">New</a><a href="#magazine">Magazine</a>
+      </nav>
+      <a class="sh-logo" href="index.html" aria-label="KORATECH STORE 홈">KORA<small>STORE</small></a>
+      <div class="sh-util">
+        <button type="button" data-open-search aria-label="검색"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><span class="lbl">검색</span></button>
+        <a href="#" data-soon aria-label="마이페이지"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/></svg><span class="lbl">마이페이지</span></a>
+        <a href="#" data-soon aria-label="좋아요"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20s-7-4.4-7-10a4 4 0 017-2.6A4 4 0 0119 10c0 5.6-7 10-7 10z"/></svg><span class="lbl">좋아요</span><span class="badge" data-badge="like" data-n="0">0</span></a>
+        <a href="#" data-open-cart aria-label="장바구니"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 8h14l-1 12H6L5 8z"/><path d="M9 8V6a3 3 0 016 0v2"/></svg><span class="lbl">장바구니</span><span class="badge" data-badge="cart" data-n="0">0</span></a>
+      </div>
+    </div>
+    <nav class="sh-cat" aria-label="카테고리">
+      <button type="button" data-cat="all" class="is-active">BEST</button>
+      <button type="button" data-cat="women">WOMEN</button>
+      <button type="button" data-cat="men">MEN</button>
+      <button type="button" data-cat="living">LIVING</button>
+      <button type="button" data-cat="kitchen">KITCHEN</button>
+      <button type="button" data-cat="tech">DIGITAL</button>
+      <button type="button" data-cat="beauty">BEAUTY</button>
+      <span class="divider" aria-hidden="true"></span>
+      <a href="#" class="accent" data-soon>EVENT</a>
+      <a href="#magazine">LOOKBOOK</a>
+      <a href="#" class="ko" data-soon>브랜드관</a>
+    </nav>
+  </div>
+</header>
+
+<div class="search-layer" id="searchLayer" role="dialog" aria-modal="true" aria-label="상품 검색">
+  <button class="close" type="button" aria-label="검색 닫기">×</button>
+  <form role="search">
+    <label class="sr-only" for="q">검색어</label>
+    <input id="q" type="search" placeholder="브랜드, 상품명을 검색하세요" autocomplete="off">
+    <div class="kw"><button type="button">코트</button><button type="button">MOREN</button><button type="button">조명</button><button type="button">선크림</button><button type="button">키보드</button></div>
+  </form>
+</div>
+
+<main id="main">
+
+  <!-- 배너 캐러셀 -->
+  <section class="banner" aria-roledescription="carousel" aria-label="기획전 배너">
+    <div class="banner-viewport">
+      <div class="banner-track">
+        <a class="banner-slide" href="#collection"><div class="bg bg-a"></div><p class="cat">WOMEN · OUTER</p><h2>바람이 바뀌는 계절,<br>첫 번째 아우터</h2><p>모렌스튜디오 단독 ~25%</p></a>
+        <a class="banner-slide" href="#best"><div class="bg bg-b"></div><p class="cat">DIGITAL</p><h2>소음은 끄고<br>몰입은 켜는 법</h2><p>소노라 신상 런칭 ~12%</p></a>
+        <a class="banner-slide" href="#collection"><div class="bg bg-c"></div><p class="cat">LIVING</p><h2>오래 머무는<br>공간의 온도</h2><p>루멘오브젝트 · 플레인폼 ~26%</p></a>
+        <a class="banner-slide" href="#new"><div class="bg bg-d"></div><p class="cat">MEN · OUTDOOR</p><h2>도시에서도<br>산에서도 단단하게</h2><p>필드루트 3L 재킷 ~18%</p></a>
+        <a class="banner-slide" href="#best"><div class="bg bg-e"></div><p class="cat">KITCHEN</p><h2>아침을 여는<br>느린 커피 한 잔</h2><p>킬른앤코 핸드메이드</p></a>
+        <a class="banner-slide" href="#best"><div class="bg bg-f"></div><p class="cat">BEAUTY</p><h2>건조한 계절을 위한<br>보습 루틴</h2><p>듀랩 베스트 ~35%</p></a>
+      </div>
+    </div>
+    <div class="banner-ctrl">
+      <button type="button" data-banner="prev" aria-label="이전 배너">‹</button>
+      <span class="count" aria-live="polite"><b>01</b><i> / 06</i></span>
+      <button type="button" data-banner="next" aria-label="다음 배너">›</button>
+      <button type="button" data-banner="pause" aria-label="일시정지">❚❚</button>
+    </div>
+    <div class="banner-progress" aria-hidden="true"><span></span></div>
+  </section>
+
+  <!-- 브랜드 칩 -->
+  <nav class="brand-strip" aria-label="추천 브랜드">
+    <div class="container">
+      <a href="#" data-soon>MOREN STUDIO</a><a href="#" data-soon>ARCHIVE NOTE</a><a href="#" data-soon>LUMEN OBJECT</a><a href="#" data-soon>SONORA</a><a href="#" data-soon>DEW LAB</a><a href="#" data-soon>KILN &amp; CO</a><a href="#" data-soon>FIELD ROUTE</a><a href="#" data-soon>PLAIN FORM</a><a href="#" data-soon>TACTILE</a><a href="#" data-soon>NOON BAG</a><a href="#" data-soon>수요입점회</a><a href="#" data-soon>이달의 키즈</a>
+    </div>
+  </nav>
+
+  <!-- BEST -->
+  <section class="s-sec" id="best">
+    <div class="container">
+      <div class="s-head"><h2>BEST<span>지금 가장 많이 사랑받는 상품</span></h2></div>
+      <div class="best-tools">
+        <div class="best-tabs" role="group" aria-label="카테고리 필터">
+          <button type="button" data-cat="all" class="is-active">ALL</button>
+          <button type="button" data-cat="women">WOMEN</button>
+          <button type="button" data-cat="men">MEN</button>
+          <button type="button" data-cat="living">LIVING</button>
+          <button type="button" data-cat="tech">DIGITAL</button>
+          <button type="button" data-cat="beauty">BEAUTY</button>
+          <button type="button" data-cat="kitchen">KITCHEN</button>
+        </div>
+        <label class="sr-only" for="sortSel">정렬</label>
+        <select class="sort-select" id="sortSel">
+          <option value="best">인기순</option><option value="off">할인율순</option><option value="review">리뷰많은순</option><option value="low">낮은가격순</option><option value="high">높은가격순</option>
+        </select>
+      </div>
+      <div class="p-grid" id="bestGrid" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <!-- 기획전 -->
+  <section class="s-sec" id="collection">
+    <div class="container">
+      <div class="s-head"><h2>SHOWCASE<span>에디터가 고른 이번 주 기획전</span></h2><a class="more" href="#" data-soon>전체보기</a></div>
+      <div class="col-list" id="colList"></div>
+    </div>
+  </section>
+
+  <!-- 신상품 -->
+  <section class="s-sec" id="new">
+    <div class="container">
+      <div class="s-head"><h2>NEW ARRIVAL<span>막 도착한 신상품</span></h2><a class="more" href="#" data-soon>더보기</a></div>
+      <div class="p-grid" id="newGrid"></div>
+    </div>
+  </section>
+
+  <!-- 매거진 -->
+  <section class="mag" id="magazine">
+    <div class="container">
+      <div class="s-head"><h2>KORA MAGAZINE<span>취향을 깊게 만드는 이야기</span></h2><a class="more" href="#" data-soon>매거진 홈</a></div>
+      <div class="mag-grid">
+        <a class="mag-card reveal" href="#" data-soon><div class="mag-img"><div class="bg bg-c"></div></div><p class="no">ISSUE 12 · LIVING</p><h3>좋은 조명은 공간의 표정을 바꿉니다</h3><p>루멘오브젝트 디자이너와 나눈 빛에 관한 대화</p></a>
+        <a class="mag-card reveal" data-delay="1" href="#" data-soon><div class="mag-img"><div class="bg bg-a"></div></div><p class="no">ISSUE 11 · STYLE</p><h3>코트 하나로 완성하는 세 가지 출근룩</h3><p>스타일리스트의 간절기 레이어링 팁</p></a>
+        <a class="mag-card reveal" data-delay="2" href="#" data-soon><div class="mag-img"><div class="bg bg-d"></div></div><p class="no">ISSUE 10 · OUTDOOR</p><h3>주말 하이킹을 위한 최소한의 장비</h3><p>필드루트가 제안하는 가벼운 시작</p></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 혜택 -->
+  <section class="benefits" aria-label="쇼핑 혜택">
+    <div class="container">
+      <div class="benefit"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 9h16v13H3zM19 13h6l4 4v5h-10"/><circle cx="9" cy="24" r="2.5"/><circle cx="23" cy="24" r="2.5"/></svg><div><b>5만원 이상 무료배송</b><span>오후 2시 이전 주문 시 당일 출고</span></div></div>
+      <div class="benefit"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="16" cy="16" r="12"/><path d="M12 16h8M16 12v8"/></svg><div><b>최대 5% 적립</b><span>회원 등급별 마일리지 적립</span></div></div>
+      <div class="benefit"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 12l10-6 10 6v12H6z"/><path d="M12 24v-7h8v7"/></svg><div><b>7일 무료 반품</b><span>단순 변심도 부담 없이</span></div></div>
+      <div class="benefit"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="8" width="24" height="16" rx="3"/><path d="M4 13h24"/></svg><div><b>안전한 PG 결제</b><span>카드 · 간편결제 · 가상계좌</span></div></div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a class="logo" href="../index.html"><img class="logo-img" src="../../assets/img/logo-horizontal-white.png" alt="KORATECH IT SOLUTIONS" width="163" height="44" loading="lazy"></a>
+        <p>홈페이지 · 쇼핑몰 · PG 결제를 한 팀에서.<br>비즈니스가 성장하는 구조를 만듭니다.</p>
+      </div>
+      <div class="footer-cols">
+        <div><h4>SERVICE</h4><ul><li><a href="../index.html#services">홈페이지 제작·관리</a></li><li><a href="../index.html#services">쇼핑몰 제작·관리</a></li><li><a href="../index.html#services">PG 결제 연동·관리</a></li></ul></div>
+        <div><h4>SOLUTION</h4><ul><li><a href="../shop/index.html">쇼핑몰 데모</a></li><li><a href="../pg/index.html">PG 개발자센터</a></li><li><a href="../pg/index.html#doc-fee">수수료 계산기</a></li></ul></div>
+        <div><h4>COMPANY</h4><ul><li><a href="../index.html#about">회사소개</a></li><li><a href="../index.html#news">소식</a></li><li><a href="../index.html#contact">문의하기</a></li></ul></div>
+      </div>
+    </div>
+    <div class="footer-info">
+      <p class="co"><!--@CO_NAME-->주식회사 코라테크아이티솔루션즈<!--/@CO_NAME--></p>
+      <p><span class="item">대표이사 <!--@CEO-->홍길동<!--/@CEO--></span><span class="sep"></span><span class="item">사업자등록번호 <!--@BIZNO-->000-00-00000<!--/@BIZNO--></span><span class="sep"></span><span class="item">통신판매업신고 <!--@ECOMNO-->제0000-서울강남-00000호<!--/@ECOMNO--></span></p>
+      <p><span class="item">주소 <!--@ADDR-->서울특별시 강남구 테헤란로 000, 00층<!--/@ADDR--></span></p>
+      <p><span class="item">대표전화 <!--@TEL--><a href="tel:0200000000">02-0000-0000</a><!--/@TEL--></span><span class="sep"></span><span class="item">팩스 <!--@FAX-->02-0000-0001<!--/@FAX--></span><span class="sep"></span><span class="item">이메일 <!--@EMAIL--><a href="mailto:contact@koratechit.com">contact@koratechit.com</a><!--/@EMAIL--></span></p>
+      <p><span class="item">개인정보보호책임자 <!--@PRIVACY-->홍길동<!--/@PRIVACY--></span><span class="sep"></span><span class="item">운영시간 <!--@HOURS-->평일 09:00 – 18:00 (주말·공휴일 휴무)<!--/@HOURS--></span></p>
+    </div>
+    <div class="footer-bottom">
+      <p>© <span class="js-year">2026</span> <!--@CO_NAME_EN-->KORATECH IT SOLUTIONS<!--/@CO_NAME_EN-->. All rights reserved.</p>
+      <nav class="footer-legal" aria-label="약관"><a href="#" data-soon>개인정보처리방침</a><a href="#" data-soon>이용약관</a><a href="#" data-soon>사업자정보확인</a></nav>
+    </div>
+  </div>
+</footer>
+
+<!-- 장바구니 드로어 -->
+<div class="dim-layer" id="dimLayer"></div>
+<aside class="drawer" id="cartDrawer" aria-hidden="true" aria-label="장바구니">
+  <div class="drawer-head"><h2>CART</h2><button class="drawer-close" type="button" aria-label="장바구니 닫기">×</button></div>
+  <div class="drawer-body" id="cartBody"></div>
+  <div class="drawer-foot" id="cartFoot">
+    <div class="row"><span>상품 금액</span><span data-v="origin">0원</span></div>
+    <div class="row"><span>할인 금액</span><span data-v="disc">0원</span></div>
+    <div class="row"><span>배송비</span><span data-v="ship">무료</span></div>
+    <div class="row total"><span>결제 예정 금액</span><span data-v="total">0원</span></div>
+    <button class="btn" type="button" id="checkoutBtn">주문하기</button>
+  </div>
+</aside>
+
+<nav class="m-tab" aria-label="모바일 하단 메뉴">
+  <a href="index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 11l8-7 8 7v9H4z"/></svg>홈</a>
+  <a href="#best"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 6h16M4 12h16M4 18h16"/></svg>카테고리</a>
+  <button type="button" data-open-search><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>검색</button>
+  <button type="button" data-open-cart><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 8h14l-1 12H6L5 8z"/><path d="M9 8V6a3 3 0 016 0v2"/></svg>장바구니</button>
+  <a href="#" data-soon><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/></svg>마이</a>
+</nav>
+
+<button class="to-top" type="button" aria-label="맨 위로">↑</button>
+</body>
+</html>
